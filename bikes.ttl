@@ -1,0 +1,802 @@
+@prefix : <http://holehan.org/bikes#> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+prefix gndo: <https://d-nb.info/standards/elementset/gnd#> .
+@base <http://holehan.org/bikes> .
+
+<http://holehan.org/bikes> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://holehan.org/bikes#hasModelName
+:hasModelName rdf:type owl:AnnotationProperty ;
+              rdfs:subPropertyOf rdfs:label ;
+              rdfs:label "hat Modellname"@de, "has model name"@en;
+              .
+
+
+:hasAlias rdf:type owl:AnnotationProperty ;
+              rdfs:subPropertyOf rdfs:label ;
+              rdfs:label "hat Spitznamen"@de, "has alias"@en;
+              .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#narrower
+skos:narrower rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#scopeNote
+skos:scopeNote rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://holehan.org/bikes#hasBikeComponent
+:hasBikeComponent rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Bike ;
+                  rdfs:range :BikeComponent .
+
+
+###  http://holehan.org/bikes#hasBikeManufacturer
+:hasBikeManufacturer rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Bike ;
+                     rdfs:range :BikeManufacturer .
+
+
+###  http://holehan.org/bikes#hasBikeOwner
+:hasBikeOwner rdf:type owl:ObjectProperty ;
+              rdfs:domain :Bike ;
+              rdfs:range :Agent .
+
+
+###  http://holehan.org/bikes#hasFrameMaterial
+:hasFrameMaterial rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Bike ;
+                  rdfs:range :FrameMaterial .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://holehan.org/bikes#hasGearingData
+:hasGearingData rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Bike ;
+                rdfs:range rdfs:Literal ;
+                rdfs:label "has Gearing Data"@en ,
+                           "hat Schaltungswerte"@de .
+
+
+###  http://holehan.org/bikes#hasImage
+:hasImage rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Bike ;
+          rdfs:range rdfs:Literal .
+
+
+###  http://holehan.org/bikes#hasMaxTeethFront
+:hasMaxTeethFront rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :hasGearingData ;
+                  rdfs:domain :Bike ;
+                  rdfs:range xsd:positiveInteger ;
+                  rdfs:label "has Maximum Number of Teeth on Front Sprocket"@en ,
+                             "hat Zähne auf größtem vorderen Ritzel"@de .
+
+
+###  http://holehan.org/bikes#hasMaxTeethRear
+:hasMaxTeethRear rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasGearingData ;
+                 rdfs:domain :Bike ;
+                 rdfs:range xsd:positiveInteger ;
+                 rdfs:label "has Maximum Number of Teeth on Rear Sprocket"@en ,
+                            "hat Zähne auf größtem hinteren Ritzel"@de .
+
+
+###  http://holehan.org/bikes#hasMileage
+:hasMileage rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Bike ;
+            rdfs:range xsd:positiveInteger ;
+            rdfs:label "has Mileage (in Km)"@en ,
+                       "hat Laufleistung (in Km)"@de .
+
+
+###  http://holehan.org/bikes#hasMinTeethFront
+:hasMinTeethFront rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :hasGearingData ;
+                  rdfs:domain :Bike ;
+                  rdfs:range xsd:positiveInteger ;
+                  rdfs:label "has Minimum Number of Teeth on Front Sprocket"@en ,
+                             "hat Zähne auf kleinstem vorderen Ritzel"@de .
+
+
+###  http://holehan.org/bikes#hasMinTeethRear
+:hasMinTeethRear rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasGearingData ;
+                 rdfs:domain :Bike ;
+                 rdfs:range xsd:positiveInteger ;
+                 rdfs:label "has Minimum Number of Teeth on Rear Sprocket"@en ,
+                            "hat Zähne auf kleinstem hinteren Ritzel"@de .
+
+
+###  http://holehan.org/bikes#hasProductionYear
+:hasProductionYear rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Bike ;
+                   rdfs:range xsd:gYear ;
+                   rdfs:label "has Year of Production"@en ,
+                              "hat Herstellungsjahr"@de .
+
+
+###  http://holehan.org/bikes#hasSprocketCountFront
+:hasSprocketCountFront rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :hasGearingData ;
+                       rdfs:domain :Bike ;
+                       rdfs:range xsd:positiveInteger ;
+                       rdfs:label "has Number of Sprockets at the Front"@en ,
+                                  "hat Anzahl hintere Ritzel"@de .
+
+
+###  http://holehan.org/bikes#hasSprocketCountRear
+:hasSprocketCountRear rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :hasGearingData ;
+                      rdfs:domain :Bike ;
+                      rdfs:range xsd:positiveInteger ;
+                      rdfs:label "has Number of Sprockets at the Rear"@en ,
+                                 "hat Anzahl vordere Ritzel"@de .
+
+
+###  http://holehan.org/bikes#hasWeightInKG
+:hasWeightInKG rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Bike ;
+               rdfs:range xsd:float ;
+               rdfs:label "has Weight (in Kilograms)"@en ,
+                          "hat Gewicht (in Kilogramm)"@de .
+
+
+###  http://holehan.org/bikes#hasWheelSize
+:hasWheelSize rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Bike ;
+              rdfs:range xsd:float ;
+              rdfs:comment "Durchmesser"@de ,
+                           "diameter"@en ;
+              rdfs:label "has Wheel Size (in Inches)"@en ,
+                         "hat Radgröße (in Zoll)"@de .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://holehan.org/bikes#Agent
+:Agent rdf:type owl:Class .
+
+
+###  http://holehan.org/bikes#Bike
+:Bike rdf:type owl:Class .
+
+
+###  http://holehan.org/bikes#BikeBrake
+:BikeBrake rdf:type owl:Class ;
+           rdfs:subClassOf :BikeComponent .
+
+
+###  http://holehan.org/bikes#BikeChain
+:BikeChain rdf:type owl:Class ;
+           rdfs:subClassOf :BikeDrivetrainPart ;
+           rdfs:label "Kette"@de .
+
+
+###  http://holehan.org/bikes#BikeCogset
+:BikeCogset rdf:type owl:Class ;
+            rdfs:subClassOf :BikeDrivetrainPart ;
+            rdfs:label "Kassette"@de .
+
+
+###  http://holehan.org/bikes#BikeComponent
+:BikeComponent rdf:type owl:Class .
+
+
+###  http://holehan.org/bikes#BikeCrankInnerBearing
+:BikeCrankInnerBearing rdf:type owl:Class ;
+                       rdfs:subClassOf :BikeDrivetrainPart ;
+                       rdfs:label "Innenlager"@de .
+
+
+###  http://holehan.org/bikes#BikeCrankset
+:BikeCrankset rdf:type owl:Class ;
+              rdfs:subClassOf :BikeDrivetrainPart ;
+              rdfs:label "Crankset"@en ,
+                         "Kurbel"@de .
+
+
+###  http://holehan.org/bikes#BikeDerailleur
+:BikeDerailleur rdf:type owl:Class ;
+                rdfs:subClassOf :BikeDrivetrainPart ;
+                rdfs:label "Umwerfer"@de ;
+                <http://www.w3.org/2004/02/skos/core#altLabel> "Schaltwerk"@de .
+
+
+###  http://holehan.org/bikes#BikeDrivetrainPart
+:BikeDrivetrainPart rdf:type owl:Class ;
+                    rdfs:subClassOf :BikeComponent .
+
+
+###  http://holehan.org/bikes#BikeFrameset
+:BikeFrameset rdf:type owl:Class ;
+              rdfs:subClassOf :BikeComponent ;
+              rdfs:comment """Things I would like to capture in some way, maybe as literal properties: Frame Name (Manufacturer & Model, Size, Weight, Material, Schaltaugen-Ersatzteilnummer) zB: ZR LADY 27.5
+
+        Gewicht: 2000 g
+        Material: Aluminium
+        Maximale Reifenbreite: 2.35\"
+        Farbe: pacificblue / white, Rahmengröße: 17 Zoll.
+        Schaltauge: #10169""" ;
+              rdfs:label "Fahrradrahmen"@de .
+
+
+###  http://holehan.org/bikes#BikeFrontDerailleur
+:BikeFrontDerailleur rdf:type owl:Class ;
+                     rdfs:subClassOf :BikeDerailleur ;
+                     rdfs:label "Umwerfer vorne"@de .
+
+
+###  http://holehan.org/bikes#BikeFrontHub
+:BikeFrontHub rdf:type owl:Class ;
+              rdfs:subClassOf :BikeWheelHub ;
+              rdfs:label "Vorderradnabe"@de .
+
+
+###  http://holehan.org/bikes#BikeFrontTire
+:BikeFrontTire rdf:type owl:Class ;
+               rdfs:subClassOf :Tire ;
+               rdfs:label "Vorderreifen"@de .
+
+
+###  http://holehan.org/bikes#BikeGrips
+:BikeGrips rdf:type owl:Class ;
+           rdfs:subClassOf :BikeSteeringComponent ;
+           rdfs:label "Lenkergriffe"@de .
+
+
+###  http://holehan.org/bikes#BikeHandlebar
+:BikeHandlebar rdf:type owl:Class ;
+               rdfs:subClassOf :BikeSteeringComponent ;
+               rdfs:label "Lenker"@de .
+
+
+###  http://holehan.org/bikes#BikeHeadset
+:BikeHeadset rdf:type owl:Class ;
+             rdfs:subClassOf :BikeSteeringComponent ;
+             rdfs:label "Steuersatz"@de .
+
+
+###  http://holehan.org/bikes#BikeManufacturer
+:BikeManufacturer rdf:type owl:Class ;
+                  rdfs:subClassOf :Agent .
+
+
+###  http://holehan.org/bikes#BikeOwner
+:BikeOwner rdf:type owl:Class ;
+           rdfs:subClassOf :Agent .
+
+
+###  http://holehan.org/bikes#BikeRearDerailleur
+:BikeRearDerailleur rdf:type owl:Class ;
+                    rdfs:subClassOf :BikeDerailleur ;
+                    rdfs:label "Umwerfer hinten"@de .
+
+
+###  http://holehan.org/bikes#BikeRearHub
+:BikeRearHub rdf:type owl:Class ;
+             rdfs:subClassOf :BikeWheelHub ;
+             rdfs:label "Hinterradnabe"@de .
+
+
+###  http://holehan.org/bikes#BikeRearTire
+:BikeRearTire rdf:type owl:Class ;
+              rdfs:subClassOf :Tire ;
+              rdfs:label "Hinterreifen"@de .
+
+
+###  http://holehan.org/bikes#BikeRims
+:BikeRims rdf:type owl:Class ;
+          rdfs:subClassOf :BikeWheelsetComponent ;
+          rdfs:label "Felgen"@de .
+
+
+###  http://holehan.org/bikes#BikeSaddle
+:BikeSaddle rdf:type owl:Class ;
+            rdfs:subClassOf :BikeSeatComponent ;
+            rdfs:label "Sattel"@de .
+
+
+###  http://holehan.org/bikes#BikeSeatComponent
+:BikeSeatComponent rdf:type owl:Class ;
+                   rdfs:subClassOf :BikeComponent ;
+                   rdfs:label "Sitz-Teil"@de .
+
+
+###  http://holehan.org/bikes#BikeSeatpost
+:BikeSeatpost rdf:type owl:Class ;
+              rdfs:subClassOf :BikeSeatComponent ;
+              rdfs:label "Sattelstütze"@de .
+
+
+###  http://holehan.org/bikes#BikeShifter
+:BikeShifter rdf:type owl:Class ;
+             rdfs:subClassOf :BikeDrivetrainPart ;
+             rdfs:label "Schalthebel"@de .
+
+
+###  http://holehan.org/bikes#BikeSpokes
+:BikeSpokes rdf:type owl:Class ;
+            rdfs:subClassOf :BikeWheelsetComponent ;
+            rdfs:label "Speichen"@de .
+
+
+###  http://holehan.org/bikes#BikeSteeringComponent
+:BikeSteeringComponent rdf:type owl:Class ;
+                       rdfs:subClassOf :BikeComponent ;
+                       rdfs:label "Lenkungs-Teil"@de .
+
+
+###  http://holehan.org/bikes#BikeStem
+:BikeStem rdf:type owl:Class ;
+          rdfs:subClassOf :BikeSteeringComponent ;
+          rdfs:label "Vorbau"@de .
+
+
+###  http://holehan.org/bikes#BikeSuspensionComponent
+:BikeSuspensionComponent rdf:type owl:Class ;
+                         rdfs:subClassOf :BikeComponent .
+
+
+###  http://holehan.org/bikes#BikeSuspensionFork
+:BikeSuspensionFork rdf:type owl:Class ;
+                    rdfs:subClassOf :BikeSuspensionComponent ;
+                    rdfs:label "Federgabel"@de .
+
+
+###  http://holehan.org/bikes#BikeWheelHub
+:BikeWheelHub rdf:type owl:Class ;
+              rdfs:subClassOf :BikeWheelsetComponent ;
+              rdfs:label "Nabe"@de .
+
+
+###  http://holehan.org/bikes#BikeWheelsetComponent
+:BikeWheelsetComponent rdf:type owl:Class ;
+                       rdfs:subClassOf :BikeComponent ;
+                       rdfs:label "Laufradsatz-Teil"@de .
+
+
+###  http://holehan.org/bikes#FrameMaterial
+:FrameMaterial rdf:type owl:Class ;
+               rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://holehan.org/bikes#Fully
+:Fully rdf:type owl:Class ;
+       rdfs:subClassOf :MTB ;
+       rdfs:label "Full Suspension"@en ,
+                  "Fully"@de .
+
+
+###  http://holehan.org/bikes#GravelBike
+:GravelBike rdf:type owl:Class ;
+            rdfs:subClassOf :Bike ;
+            rdfs:label "Gravel Bike"@de ,
+                       "Gravelbike"@de .
+
+
+###  http://holehan.org/bikes#Hardtail
+:Hardtail rdf:type owl:Class ;
+          rdfs:subClassOf :MTB ;
+          rdfs:label "Hardtail"@de ,
+                     "Hardtail"@en .
+
+
+###  http://holehan.org/bikes#MTB
+:MTB rdf:type owl:Class ;
+     rdfs:subClassOf :Bike .
+
+
+###  http://holehan.org/bikes#RoadBike
+:RoadBike rdf:type owl:Class ;
+          rdfs:subClassOf :Bike ;
+          rdfs:label "Rennrad"@de ,
+                     "Roadbike"@en .
+
+
+###  http://holehan.org/bikes#SinglespeedHipster
+:SinglespeedHipster rdf:type owl:Class ;
+                    rdfs:subClassOf :Bike ;
+                    rdfs:label "Hipster Bike"@en ,
+                               "Singlespeed"@de .
+
+
+###  http://holehan.org/bikes#Tire
+:Tire rdf:type owl:Class ;
+      rdfs:subClassOf :BikeWheelsetComponent ;
+      rdfs:label "Reifen"@de .
+
+
+###  http://www.w3.org/2004/02/skos/core#Collection
+<http://www.w3.org/2004/02/skos/core#Collection> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://holehan.org/bikes#Aluminum
+:Aluminum rdf:type owl:NamedIndividual ,
+                   :FrameMaterial ;
+          <http://www.w3.org/2004/02/skos/core#prefLabel> "Alu"@de ,
+                                                          "Aluminum"@en .
+
+
+###  http://holehan.org/bikes#Canyon
+:Canyon rdf:type owl:NamedIndividual ,
+                 :BikeManufacturer ;
+        rdfs:label "Canyon Bicycles" .
+
+
+###  http://holehan.org/bikes#Carbon
+:Carbon rdf:type owl:NamedIndividual ,
+                 :FrameMaterial ;
+        <http://www.w3.org/2004/02/skos/core#prefLabel> "Carbon"@de ,
+                                                        "Carbon"@en .
+
+
+###  http://holehan.org/bikes#Ewald
+:Ewald rdf:type owl:NamedIndividual ,
+                :RoadBike ;
+       :hasBikeManufacturer :Winora ;
+       :hasBikeOwner :Flo ;
+       :hasFrameMaterial :Steel ;
+       :hasImage "/images/bikes/ewald.jpg" ;
+       :hasMaxTeethFront 52 ;
+       :hasMaxTeethRear "26"^^xsd:int ;
+       :hasMileage 3000 ;
+       :hasMinTeethFront 39 ;
+       :hasMinTeethRear "11"^^xsd:int ;
+       :hasProductionYear "1983"^^xsd:gYear ;
+       :hasSprocketCountFront 2 ;
+       :hasSprocketCountRear 6 ;
+       :hasWeightInKG "10.5"^^xsd:float ;
+       :hasWheelSize "28.0"^^xsd:float ;
+       dc:description "Beschreibungstext"@de ,
+                                                     "Description"@en ;
+       :hasAlias "Ewald" .
+
+
+###  http://holehan.org/bikes#Fixie
+:Fixie rdf:type owl:NamedIndividual ,
+                :SinglespeedHipster ;
+       :hasBikeManufacturer :FixieInc ;
+       :hasBikeOwner :Flo ;
+       :hasFrameMaterial :Aluminum ;
+       :hasImage "/images/bikes/fixie.jpg" ;
+       :hasMaxTeethFront 32 ;
+       :hasMaxTeethRear 17 ;
+       :hasMileage 2200 ;
+       :hasMinTeethFront 32 ;
+       :hasMinTeethRear 17 ;
+       :hasProductionYear "2015"^^xsd:gYear ;
+       :hasSprocketCountFront 1 ;
+       :hasSprocketCountRear 1 ;
+       :hasWeightInKG "10.5"^^xsd:float ;
+       :hasWheelSize "28.0"^^xsd:float ;
+       :hasModelName "Fixie Floater Race Two-Speed" ;
+       dc:description '''Vor ein paar Jahren hat es mich gepackt: ein neues Rad musste her, am besten eins mit ganz wenig Wartungsaufwand und ganz viel Fahrspaß. Ein Fixie allein war mir zu einschränkend, für ein vollwertiges Rennrad war ich allerdings auch nicht bereit. So wurde es ein <a href="https://www.cycles-for-heroes.com/produkt/fixie-inc-floater-race-black/" target="_blank">2-Gang-Singlespeed</a> mit SRAM-Automatix-Nabenschaltung und Rennrad-Attitüden. Im Großen und Ganzen macht das Teil Mordsspaß. Leider schaltet die Automatik zu früh in den zweiten Gang, aber mit <a href="https://bikesfornoreason.blogspot.com/2014/01/sram-automatix-2-speed-hack.html" target="_blank">ein wenig Handarbeit</a> lässt sich das Problem hoffentlich bald lösen. So viel zum Thema wartungsarm 🤣...
+       '''@de ,
+                                                     '''Low maintenance and high speed in one cheap package is what I got with the <a href="https://www.cycles-for-heroes.com/produkt/fixie-inc-floater-race-black/" target="_blank">Fixie Inc. Floater Twospeed Race</a>. The only thing I don\'t like about the automatic gear shifting is that it shifts absurdly early. <a href="https://bikesfornoreason.blogspot.com/2014/01/sram-automatix-2-speed-hack.html" target="_blank">But it can be helped</a>. So much for low maintenance 🤣...
+                                                     '''@en ;
+       :hasAlias "Fixie" .
+
+
+###  http://holehan.org/bikes#FixieInc
+:FixieInc rdf:type owl:NamedIndividual ,
+                   :BikeManufacturer ;
+          rdfs:label "Fixie Inc." .
+
+
+###  http://holehan.org/bikes#Flo
+:Flo rdf:type owl:NamedIndividual ,
+              :BikeOwner ;
+     rdfs:label "Florian" .
+
+
+###  http://holehan.org/bikes#GT
+:GT rdf:type owl:NamedIndividual ,
+             :Hardtail ;
+    :hasBikeManufacturer :GT_Bycyles ;
+    :hasBikeOwner :Flo ;
+    :hasFrameMaterial :Steel ;
+    :hasImage "/images/bikes/gt.jpg" ;
+    :hasMaxTeethFront "44"^^xsd:int ;
+    :hasMaxTeethRear "32"^^xsd:int ;
+    :hasMileage 15000 ;
+    :hasMinTeethFront "22"^^xsd:int ;
+    :hasMinTeethRear "11"^^xsd:int ;
+    :hasProductionYear "1993"^^xsd:gYear ;
+    :hasSprocketCountFront "3"^^xsd:int ;
+    :hasSprocketCountRear "9"^^xsd:int ;
+    :hasWeightInKG "12.5"^^xsd:float ;
+    :hasWheelSize "26.0"^^xsd:float ;
+    :hasModelName "GT Karakoram Elite" ;
+    dc:description "Beschreibungstext"@de ,
+                                                  "Description"@en ;
+    :hasAlias "GT" .
+
+
+###  http://holehan.org/bikes#GT_Bycyles
+:GT_Bycyles rdf:type owl:NamedIndividual ,
+                     :BikeManufacturer ;
+            rdfs:label "GT Bicycles" .
+
+
+###  http://holehan.org/bikes#Grizl81by
+:Grizl81by rdf:type owl:NamedIndividual ,
+                    :GravelBike ;
+           :hasBikeManufacturer :Canyon ;
+           :hasBikeOwner :Canyon ;
+           :hasFrameMaterial :Carbon ;
+           :hasImage "/images/bikes/dreambike.jpg" ;
+           :hasMaxTeethFront "40"^^xsd:int ;
+           :hasMaxTeethRear "42"^^xsd:int ;
+           :hasMileage 0 ;
+           :hasMinTeethFront "40"^^xsd:int ;
+           :hasMinTeethRear "11"^^xsd:int ;
+           :hasProductionYear "2021"^^xsd:gYear ;
+           :hasSprocketCountFront "1"^^xsd:int ;
+           :hasSprocketCountRear "11"^^xsd:int ;
+           :hasWeightInKG "9.2"^^xsd:float ;
+           :hasWheelSize "28.0"^^xsd:float ;
+           :hasModelName "Canyon Grizl CF SL 8 1by" ;
+           dc:description "Beschreibungstext"@de ,
+                                                         "Description"@en ;
+           :hasAlias "Grizzzl" .
+
+
+###  http://holehan.org/bikes#Judy
+:Judy rdf:type owl:NamedIndividual ,
+               :Hardtail ;
+      :hasBikeComponent :JudysBremse ,
+                        :JudysRahmen ;
+      :hasBikeManufacturer :Radon ;
+      :hasBikeOwner :Tina ;
+      :hasFrameMaterial :Aluminum ;
+      :hasImage "/images/bikes/judy.jpg" ;
+      :hasMaxTeethFront "32"^^xsd:int ;
+      :hasMaxTeethRear "51"^^xsd:int ;
+      :hasMileage 150 ;
+      :hasMinTeethFront "32"^^xsd:int ;
+      :hasMinTeethRear "10"^^xsd:int ;
+      :hasProductionYear "2021"^^xsd:gYear ;
+      :hasSprocketCountFront "1"^^xsd:int ;
+      :hasSprocketCountRear "12"^^xsd:int ;
+      :hasWeightInKG "12.95"^^xsd:float ;
+      :hasWheelSize "27.5"^^xsd:float ;
+      :hasModelName "Radon ZR Lady 7.0 (2021)" ;
+      dc:description "Beschreibungstext"@de ,
+                                                    "Description"@en ;
+      rdfs:comment """Zulässiges Gesamtgewicht: 115 kg
+Schaltauge: Radon #10169 (baugleich mit Cube 123 (10146))"""@de ;
+      :hasAlias "Judy" .
+
+
+###  http://holehan.org/bikes#JudysBremse
+:JudysBremse rdf:type owl:NamedIndividual ,
+                      :BikeBrake ;
+             rdfs:comment """Bremsscheiben: Shimano SM-RT10, 180mm vorne, 160mm hinten, center-lock
+Bremsbeläge: ab Werk Shimano BS01S (Bitumen/organic); Modell wurde ersetzt durch Shimano BS03S (Bitumen/organic)"""@de ;
+             rdfs:label "Shimano BR-MT200" .
+
+
+###  http://holehan.org/bikes#JudysInnenlager
+:JudysInnenlager rdf:type owl:NamedIndividual ,
+                          :BikeCrankInnerBearing ;
+                 :hasModelName "Shimano SM-BB52"@de ;
+                 rdfs:comment "73mm BSA"@de ;
+                 rdfs:label "Judys Innenlager"@de .
+
+
+###  http://holehan.org/bikes#JudysKette
+:JudysKette rdf:type owl:NamedIndividual ,
+                     :BikeChain ;
+            :hasModelName "Shimano DEORE CN-M6100"@de ;
+            rdfs:label "Judys Kette"@de .
+
+
+###  http://holehan.org/bikes#JudysKurbel
+:JudysKurbel rdf:type owl:NamedIndividual ,
+                      :BikeCrankset ;
+             :hasModelName "Shimano FC-MT511"@de ;
+             rdfs:comment """32T (Zähne am einzigen Kettenblatt)
+Kurbellänge: 175mm"""@de ;
+             rdfs:label "Judys Kurbel"@de .
+
+
+###  http://holehan.org/bikes#JudysRahmen
+:JudysRahmen rdf:type owl:NamedIndividual ,
+                      :BikeFrameset ;
+             rdfs:comment """Rahmengröße: 17 Zoll
+Gewicht: 2000g
+Maximale Riefenbreite: 2,35 Zoll
+Farbe: pacificblue / white"""@de .
+
+
+###  http://holehan.org/bikes#Radon
+:Radon rdf:type owl:NamedIndividual ,
+                :BikeManufacturer ;
+       rdfs:label "Radon" .
+
+
+###  http://holehan.org/bikes#Steel
+:Steel rdf:type owl:NamedIndividual ,
+                :FrameMaterial ;
+       <http://www.w3.org/2004/02/skos/core#prefLabel> "Stahl"@de ,
+                                                       "Steel"@en .
+
+
+###  http://holehan.org/bikes#Tina
+:Tina rdf:type owl:NamedIndividual ,
+               :BikeOwner ;
+      rdfs:label "Tina" .
+
+
+###  http://holehan.org/bikes#Winora
+:Winora rdf:type owl:NamedIndividual ,
+                 :BikeManufacturer ;
+        rdfs:label "Winora" .
+
+
+###  http://holehan.org/vocab/biketerms/BrakeType
+<http://holehan.org/vocab/biketerms/BrakeType> rdf:type owl:NamedIndividual ,
+                                                        <http://www.w3.org/2004/02/skos/core#Collection> .
+
+
+###  http://holehan.org/vocab/biketerms/Brakes
+<http://holehan.org/vocab/biketerms/Brakes> rdf:type owl:NamedIndividual ,
+                                                     <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                            <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/DiskBrake> ,
+                                                                                           <http://holehan.org/vocab/biketerms/RimBrake> ;
+                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Brakes"@en ,
+                                                                                            "Bremsen"@de .
+
+
+###  http://holehan.org/vocab/biketerms/CaliperRimBrake
+<http://holehan.org/vocab/biketerms/CaliperRimBrake> rdf:type owl:NamedIndividual ,
+                                                              <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                     <http://www.w3.org/2004/02/skos/core#prefLabel> "Caliper Brake"@en ,
+                                                                                                     "Zangenbremse"@de ;
+                                                     <http://www.w3.org/2004/02/skos/core#scopeNote> "Brake cables that pull the pads are mounted on a central point and both levers are pulled at the same time when the cyclist uses their brake."@en .
+
+
+###  http://holehan.org/vocab/biketerms/CantileverRimBrake
+<http://holehan.org/vocab/biketerms/CantileverRimBrake> rdf:type owl:NamedIndividual ,
+                                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                        <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/VBrakeRimBrake> ;
+                                                        <http://www.w3.org/2004/02/skos/core#prefLabel> "Cantilever Brake"@en ,
+                                                                                                        "Cantilever-Bremse"@de ;
+                                                        <http://www.w3.org/2004/02/skos/core#scopeNote> "Brake levers are mounted and pulled indepently of each other when brake is used."@en .
+
+
+###  http://holehan.org/vocab/biketerms/DiskBrake
+<http://holehan.org/vocab/biketerms/DiskBrake> rdf:type owl:NamedIndividual ,
+                                                        <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                               <http://www.w3.org/2004/02/skos/core#altLabel> "Disk Brake"@en ;
+                                               <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/HydraulicDiskBrake> ,
+                                                                                              <http://holehan.org/vocab/biketerms/MechanicalDiskBrake> ;
+                                               <http://www.w3.org/2004/02/skos/core#prefLabel> "Disc Brake"@en ,
+                                                                                               "Scheibenbremse"@de ;
+                                               <http://www.w3.org/2004/02/skos/core#scopeNote> "Type of bicycle brake where a separate metal disc mounted to the wheel is grabbed by the brake pads. As opposed to the rim being used for braking directly. Has more intense braking power and isn't affected by wetness as much as rim brakes."@en .
+
+
+###  http://holehan.org/vocab/biketerms/DriveTrain
+<http://holehan.org/vocab/biketerms/DriveTrain> rdf:type owl:NamedIndividual ,
+                                                         <http://www.w3.org/2004/02/skos/core#Collection> .
+
+
+###  http://holehan.org/vocab/biketerms/HydraulicDiskBrake
+<http://holehan.org/vocab/biketerms/HydraulicDiskBrake> rdf:type owl:NamedIndividual ,
+                                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                        <http://www.w3.org/2004/02/skos/core#prefLabel> "Hydraulic Disc Brake"@en ,
+                                                                                                        "hydraulische Scheibenbremse"@de .
+
+
+###  http://holehan.org/vocab/biketerms/MechanicalDiskBrake
+<http://holehan.org/vocab/biketerms/MechanicalDiskBrake> rdf:type owl:NamedIndividual ,
+                                                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                         <http://www.w3.org/2004/02/skos/core#prefLabel> "Mechanical Disc Brake"@en ,
+                                                                                                         "mechanische Scheibenbremse"@de .
+
+
+###  http://holehan.org/vocab/biketerms/RimBrake
+<http://holehan.org/vocab/biketerms/RimBrake> rdf:type owl:NamedIndividual ,
+                                                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                              <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/CaliperRimBrake> ,
+                                                                                             <http://holehan.org/vocab/biketerms/CantileverRimBrake> ;
+                                              <http://www.w3.org/2004/02/skos/core#prefLabel> "Felgenbremse"@de ,
+                                                                                              "Rim Brake"@en ;
+                                              <http://www.w3.org/2004/02/skos/core#scopeNote> "Brake pads grab the wheel's metal rim directly, wearing down the rims eventually and degrading brake power in wet conditions."@en .
+
+
+###  http://holehan.org/vocab/biketerms/VBrakeRimBrake
+<http://holehan.org/vocab/biketerms/VBrakeRimBrake> rdf:type owl:NamedIndividual ,
+                                                             <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                                    <http://www.w3.org/2004/02/skos/core#altLabel> "V-Bremse"@de ;
+                                                    <http://www.w3.org/2004/02/skos/core#prefLabel> "V Brake"@en ,
+                                                                                                    "V-Brake"@de .
+
+
+###  http://holehan.org/vocab/biketerms/1x
+<http://holehan.org/vocab/biketerms/1x> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/singlespeed> ,
+                                                                                       <http://holehan.org/vocab/biketerms/1x10> ,
+                                                                                       <http://holehan.org/vocab/biketerms/1x11> ,
+                                                                                       <http://holehan.org/vocab/biketerms/1x12> ,
+                                                                                       <http://holehan.org/vocab/biketerms/1x13> .
+
+
+###  http://holehan.org/vocab/biketerms/2x
+<http://holehan.org/vocab/biketerms/2x> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/2x10> ,
+                                                                                       <http://holehan.org/vocab/biketerms/2x11> ,
+                                                                                       <http://holehan.org/vocab/biketerms/2x12> ,
+                                                                                       <http://holehan.org/vocab/biketerms/2x13> ,
+                                                                                       <http://holehan.org/vocab/biketerms/2x9> .
+
+
+###  http://holehan.org/vocab/biketerms/3x
+<http://holehan.org/vocab/biketerms/3x> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                        <http://www.w3.org/2004/02/skos/core#narrower> <http://holehan.org/vocab/biketerms/3x9> .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://holehan.org/vocab/biketerms/bike-vocabulary> dc:description "A vocabulary to describe bicycles: their class (MTB, Road, Urban), their gearing, brake types etc." ;
+                                                     dct:creator <http://d-nb.info/gnd/17388346X> ;
+                                                     dc:title "Bike Vocabulary" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
